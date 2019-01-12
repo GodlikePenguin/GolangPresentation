@@ -8,7 +8,16 @@ export default class Fullscreen extends React.Component {
   componentDidMount() {
     document.addEventListener('keypress', function(e) {
         if (e.key === 'f') {
-            document.documentElement.requestFullscreen();
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+              } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+              } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+              } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+              }
         }
     });
   }
