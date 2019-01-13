@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "mdx-deck": "^1.8.2"
+  },
+  "dependencies": {
+    "react-ace": "^6.3.2"
   }
 }
