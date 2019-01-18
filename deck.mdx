@@ -3,7 +3,7 @@ import Fullscreen from 'components/Fullscreen'
 
 <Fullscreen />
 
-## A Presentation on Golang
+# A Presentation on Golang
 
 ![golang gopher](public/img/gopher.png)
 
@@ -12,9 +12,37 @@ import Fullscreen from 'components/Fullscreen'
 Edward Dobson
 </small>
 ---
-import Counter from 'components/Counter'
+## Background
+- Go was developed at Google in 2007 and publically released in 2012
+- It was intended to couple the benefits of safety and speed from strictly typed languages with the readability and usability from dynamically typed languages
+- Looks "C like" but with lots of the syntactic sugar of modern languages
+---
+## Primative types
+```go
+bool
 
-<Counter />
+string
+
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+
+byte // alias for uint8
+
+rune // alias for int32
+     // represents a Unicode code point
+
+float32 float64
+
+complex64 complex128
+```
+---
+## Variables
+```go
+var i int
+var i int = 0
+var i = 0 //infers that i is an int
+i := 0 //infers that i is an int
+```
 ---
 ## Basic hello world program
 ```go
