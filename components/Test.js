@@ -1,38 +1,20 @@
 import React from 'react';
-import { render } from 'react-dom';
-import brace from 'brace';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/golang';
 import 'brace/theme/monokai';
 
-const wrapperStyle = {
-  textAlign: 'center'
-}
-
-const editorStyle = {
-  display: 'inline-block'
-}
-
-const buttonStyle = {
-  backgroundColor: '#4CAF50', /* Green */
-  border: 'none',
-  color: 'white',
-  padding: '15px 32px',
-  textAlign: 'center',
-  textDecoration: 'none',
-  display: 'inline-block',
-  fontSize: '16px'
-}
+import './Test.css';
 
 class Test extends React.Component {
-  state = {input: '', output: ''}
+  state = {input: '', output: ''};
   constructor(props) {
     super(props);
+    this.state.output = props.initialOutput;
     this.buttonClick = this.buttonClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  
+
   buttonClick() {
     fetch('http://localhost:9000/ping', {method: 'post', body: this.state.input})
     .then(response => response.text())
@@ -40,17 +22,17 @@ class Test extends React.Component {
       this.setState({output: data});
     })
   }
-  
+
   handleChange(e) {
     this.setState({input: e})
   }
-  
+
   componentDidMount() {
     this.state.input = this.props.value;
   }
-  
+
   render() {
-    return (<div style={wrapperStyle}>
+    return (<div className={'wrapper'}>
       <AceEditor
       mode="golang"
       theme="monokai"
@@ -65,12 +47,14 @@ class Test extends React.Component {
         showLineNumbers: true,
         tabSize: 2,
       }}
-      style={editorStyle}/><br />
-      <button onClick={this.buttonClick} style={buttonStyle}>Run</button><br />
-      <code>{this.state.output}</code>
+      className={'ace-editor'}/><br />
+      <button onClick={this.buttonClick} className={'run-button'}>Run</button><br />
+        <div className="output-block">
+        <code>{this.state.output}</code>
+        </div>
       </div>
       )
     }
   }
-  
+
   export default Test;

@@ -8,12 +8,13 @@
     "start": "mdx-deck deck.mdx",
     "build": "mdx-deck build deck.mdx",
     "pdf": "mdx-deck pdf deck.mdx"
-
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mdx-deck": "^1.8.2"
+    "css-loader": "^2.1.0",
+    "mdx-deck": "^1.8.2",
+    "style-loader": "^0.23.1"
   },
   "dependencies": {
     "react-ace": "^6.3.2"

@@ -1,0 +1,31 @@
+.wrapper {
+    text-align: center;
+}
+
+.ace-editor {
+    display: inline-block;
+}
+
+.run-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.run-button:hover {
+    background-color: #3e8e41;
+}
+
+.run-button:active {
+    background-color: #274f27;
+}
+
+.output-block {
+    margin-top: 20px;
+    background: #222;
+}
