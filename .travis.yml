@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 10
+script:
+  - npm run pdf
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_API_KEY
+  file: "dist/presentation.pdf"
+  skip_cleanup: true
+  on:
+    branch: master
+
