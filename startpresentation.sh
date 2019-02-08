@@ -18,7 +18,7 @@ function trap_ctrlc () {
 # when signal 2 (SIGINT) is received
 trap "trap_ctrlc" 2
 
-docker run --name goexec --rm -d -p 9000:8080 edwarddobson/goexec
+docker run --name goexec --rm -d -p 127.0.0.1:9000:8080 edwarddobson/goexec
 
 npm start
 
