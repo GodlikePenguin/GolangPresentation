@@ -1,5 +1,6 @@
 export { default as theme } from 'Theme'
 import Fullscreen from 'components/Fullscreen'
+import HiLight from 'components/HighlightedBlock'
 
 <Fullscreen />
 
@@ -15,47 +16,84 @@ Edward Dobson
 ## Background
 - Go was developed at Google in 2007 and publically released in 2012
 - It was intended to couple the benefits of safety and speed from strictly typed languages with the readability and usability from dynamically typed languages
-- Looks "C like" but with lots of the syntactic sugar of modern languages
+- Looks "C like" but with lots of the syntactic sugar of more modern languages
 ---
-## Primative types
-```go
-bool
-
-string
-
-int  int8  int16  int32  int64
-uint uint8 uint16 uint32 uint64 uintptr
-
-byte // alias for uint8
-
-rune // alias for int32
-     // represents a Unicode code point
-
-float32 float64
-
-complex64 complex128
-```
+## Goals in depth
+- Easy to learn
+- Type safety and memory safety
+- Easy concurrency
+- Low latency garbage collection
+- Fast compilation
 ---
-## Variables
+## Basic hello world
 ```go
-var i int
-var i int = 0
-var i = 0 //infers that i is an int
-i := 0 //infers that i is an int
-```
----
-## Basic hello world program
-```go
+package main
 import "fmt"
-func foo() {
-    fmt.Println("Hello world")
+func main() {
+	fmt.Println("Hello world")
 }
 ```
+There are three main parts of a Go file...
 ---
-## Test
-import Test from 'components/Test'
+## Package declaration
+<div id='hilight1'></div>
 
-<Test value={`package main
+```go
+package main
+import "fmt"
+func main() {
+	fmt.Println("Hello world")
+}
+```
+- Each file must belong to a package
+- Variables and functions accessed via their package names 
+
+<HiLight id='hilight1' start='package' end='main' />
+---
+## Imports
+<div id='hilight2'></div>
+
+```go
+package main
+import "fmt"
+func main() {
+	fmt.Println("Hello world")
+}
+```
+- The set of packages required for this file
+- If a package is imported it must be used*
+
+<HiLight id='hilight2' start='import' end='"fmt"' />
+---
+## ...and the rest
+<div id='hilight3'></div>
+
+```go
+package main
+import "fmt"
+func main() {
+	fmt.Println("Hello world")
+}
+```
+- The variables and functions declared in this file
+
+<HiLight id='hilight3' start='func' end='}' />
+---
+## Type inference
+```go
+var foo int
+foo = 10
+//is the same as
+var foo = 10
+//is the same as
+foo := 10
+```
+Declarations
+---
+## Interactive Hello world
+import RunnableBlock from 'components/RunnableBlock'
+
+<RunnableBlock value={`package main
 func main() {
   println("hello wld")
 }`}

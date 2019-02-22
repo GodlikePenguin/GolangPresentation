@@ -4,6 +4,10 @@ import prismGo from 'react-syntax-highlighter/languages/prism/go'
 
 export default {
   ...future,
+  heading: {
+    fontWeight: 600,
+    textTransform: 'none',
+  },
   prism: {
     style: okaidia,
     languages: {

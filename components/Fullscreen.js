@@ -24,7 +24,7 @@ export default class Fullscreen extends React.Component {
   
   render() {
     return (
-      <div></div>
+      <React.Fragment></React.Fragment>
       );
     }
   }
