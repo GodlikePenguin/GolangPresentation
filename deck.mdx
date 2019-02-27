@@ -1,6 +1,8 @@
 export { default as theme } from 'Theme'
+import { Split } from 'mdx-deck/layouts'
 import Fullscreen from 'components/Fullscreen'
 import HiLight from 'components/HighlightedBlock'
+import Cool from 'components/CoolFeature'
 
 <Fullscreen />
 
@@ -14,7 +16,7 @@ Edward Dobson
 </small>
 ---
 ## Background
-- Go was developed at Google in 2007 and publicly released in 2012
+- Go was developed at Google in 2007 and v1.0 was publicly released in 2012
 - It was intended to couple the benefits of safety and speed from strictly typed languages with the readability and usability from dynamically typed languages
 - Looks "C like" but with lots of the syntactic sugar of more modern languages
 - Multi paradigm, but mainly used for networking and systems applications
@@ -32,7 +34,7 @@ Runtime and compilation speed
 - Low latency garbage collection
 - Fast compilation and execution
 ---
-## Basic hello world
+## Hello World
 ```go
 package main
 
@@ -44,10 +46,15 @@ func main() {
   fmt.Println(message)
 }
 ```
-- Go explicitly uses a keyword (`func`, `var`) as well as the type (<small>_Most of the time_</small>)
+- Go explicitly uses a keyword (`func`, `var`) as well as the type
+
+<em>except when using...</em>
 
 ---
-## Type inference
+
+## Type Inference
+<Cool num='1' />
+
 ```go
 var message string
 message = "Hello world"
@@ -57,6 +64,79 @@ var message = "Hello world"
 message := "Hello world"
 ```
 - The type, and even the var keyword in variable declarations are optional
+
+---
+## Type system
+- Strongly typed (No implicit conversions)
+- Statically typed (Although more freedom than C)
+- Pseudo Object Oriented
+
+❌          | ✅
+------------|-------------
+Classes     | Structs
+Inheritence | Interfaces
+Generics    | People who pretend they don't need generics
+
+---
+## Structs
+
+```go
+type Person struct {
+  FirstName string
+  LastName string
+}
+
+p := Person{FirstName: "John"}
+fmt.Println(p.FirstName) // prints 'John'
+```
+
+- A Struct is a typed collection of fields, each of which can be accessed by dot notation
+- Dot notation for both pointer and non pointer types (I am looking at you C++)
+
+---
+## Struct methods
+```go
+func (p Person) String() string {
+  return p.FirstName + " " + p.LastName
+}
+
+p := Person{FirstName: "John", "Smith"}
+fmt.Println(p.String()) // prints 'John Smith'
+```
+
+- You can also add methods to structs, by specifing the struct type as part of the method signature
+- These are also accessed by dot notation
+
+---
+## Interfaces
+
+```go
+type Stringer interface {
+  String() string
+}  
+```
+- We use interfaces to specify a 'type' which implements one or more methods
+- We don't care about the implementation of those methods, but the argument and return type must match
+- A struct implicitly implements an interface without the need for a decorator (e.g. `class Foo implements Bah` in Java)
+
+---
+## Embedded types: Pseudo Inheritence
+```go
+type Employee struct {
+  Person
+  Job string
+}
+```
+- If a field in a struct is not named, all it's attributes and methods are applied directly to the outer struct
+- This **DOES NOT** mean we can use an `Employee` as a `Person`, they are still separate types
+- Similar to private inheritence from C++
+
+---
+## Concurrency
+
+---
+Everything after this slide is a maybe
+
 ---
 ## Functions
 Quite a few nifty features that you don't find in C
@@ -97,8 +177,7 @@ func readFile(fileName string) []byte {
 ```
 - We can use the `defer` keyword to manually push a function to the call stack so that it is executed when the current function finishes
 - Defer can be called multiple times, with the last defer call being executed first (LIFO)
----
-## Polymorphism
+
 ---
 ## Interactive Hello world
 import RunnableBlock from 'components/RunnableBlock'

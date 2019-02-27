@@ -6,7 +6,7 @@ export default {
   ...future,
   heading: {
     fontWeight: 600,
-    textTransform: 'none',
+    textTransform: 'capitalize',
   },
   prism: {
     style: okaidia,
