@@ -1,0 +1,20 @@
+.cool-badge-holder {
+  display: inline-block;
+}
+
+.cool-badge {
+  display: flex;
+}
+
+.cool-badge .text {
+  background: #333;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.cool-badge .num {
+  font-family: monospace;
+  font-size: 18px;
+  background: coral;
+  padding: 5px;
+}
