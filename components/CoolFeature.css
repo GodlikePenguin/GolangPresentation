@@ -1,5 +1,6 @@
 .cool-badge-holder {
   display: inline-block;
+  background: #333;
 }
 
 .cool-badge {
@@ -7,9 +8,9 @@
 }
 
 .cool-badge .text {
-  background: #333;
   font-size: 14px;
   padding: 5px;
+  padding-top: 7px;
 }
 
 .cool-badge .num {
@@ -17,4 +18,5 @@
   font-size: 18px;
   background: coral;
   padding: 5px;
+  padding-top: 7px;
 }
