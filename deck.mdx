@@ -15,6 +15,16 @@ import Cool from 'components/CoolFeature'
 Edward Dobson
 </small>
 ---
+## Contents
+- Introduction to Go
+
+<small>Todorova, Magdalina, et al. "The Go Programming Language: Characteristics and Capabilities." Annual of “Informatics” Section Union of Scientists in Bulgaria 6: 76-85.</small>
+
+- Concurrency
+
+<small>Prabhakar, Raghu, and Rohit Kumar. Concurrent Programming in Go. Google, Tech. Rep, 2011.</small>
+
+---
 ## Background
 - Go was developed at Google in 2007 and v1.0 was publicly released in 2012
 - It was intended to couple the benefits of safety and speed from strictly typed languages with the readability and usability from dynamically typed languages
@@ -132,9 +142,101 @@ type Employee struct {
 - Similar to private inheritence from C++
 
 ---
-## Concurrency
+## What are we missing
+
+
+<div style={{fontSize: '1.5em', textAlign: 'left', marginTop: '50px'}}>Mentioned before:</div>
+
+- Inheritence
+- Generics
+
+<div style={{fontSize: '1.5em', textAlign: 'left',}}>Not mentioned:</div>
+
+- Operator or Function overloading
 
 ---
+## Concurrency
+
+Sticking with the goal of simplicity...
+---
+## Goroutines
+- A goroutine is a lightweight thread of execution.
+- Allows you to run a function in another thread
+- Goroutines run in the same address space so access to shared memory can cause race conditions
+- Channels (message passing) are a thread safe way for goroutines to communicate 
+---
+## Starting a new goroutine
+```go
+func reallyUsefulMethod(message string) {
+  fmt.Println(message)
+}
+
+go reallyUsefulMethod("Hello from another goroutine")
+```
+- As simple as just placing the `go` keyword before a function call
+---
+## Channels
+
+- Channels are a typed conduit through which you can send and receive values
+- Can be simplex or duplex
+---
+Enough boring talk, lets see concurrency in action
+<RunnableBlock value={`package main
++S
+import "math"
++S
+func main() {
+	//Create a channel of input numbers
+	in := make(chan float64, 10)
+	//Create a channel of input numbers
+	out := make(chan float64, 10)
+	//The numbers to find the square roots of
+	inNums := []float64{36.0, 49.0, 64.0}
+	//Put the numbers in the in channel
+	for _, num := range inNums {
+		in <- num
+	}
+	//Closing a channel means we're not going to send
+  // anything else on it
+	close(in)
+	//Start a goroutine
+	go sqrt(in, out)
+	println("waiting for responses")
+	//Iterate through the responses and print them
+	for num := range out {
+		println(num)
+	}
+}
++S
+func sqrt(in <-chan float64, out chan<- float64) {
+	//loop through the input numbers and place the 
+  // resulting square root in the output channel
+	//This loop will keep running until the 'in'
+  // channel is closed
+	for num := range in {
+		out <- math.Sqrt(num)
+	}
+	//Close the out channel so the main thread knows
+  // we're done
+	close(out)
+}`}
+  initialOutput={`6
+  7
+  8`}
+  height="600px" />
+---
+
+
+
+
+
+
+
+
+
+
+
+
 Everything after this slide is a maybe
 
 ---

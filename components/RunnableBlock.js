@@ -28,7 +28,7 @@ class RunnableBlock extends React.Component {
   }
 
   componentDidMount() {
-    this.state.input = this.props.value;
+    this.state.input = this.props.value.split('+S').join('');
   }
 
   render() {
@@ -37,7 +37,7 @@ class RunnableBlock extends React.Component {
         <AceEditor
           mode="golang"
           theme="monokai"
-          fontSize={20}
+          fontSize={24}
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
@@ -48,7 +48,8 @@ class RunnableBlock extends React.Component {
             tabSize: 2,
           }}
           className={'ace-editor'}
-          width="80%"
+          width="100%"
+          height={this.props.height}
         />
         <br />
         <button onClick={this.buttonClick} className={'run-button'}>
