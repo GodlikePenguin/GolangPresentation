@@ -1,0 +1,55 @@
+Everything after this slide is a maybe
+
+---
+## Functions
+Quite a few nifty features that you don't find in C
+---
+## Multiple return values
+```go
+func head(list []string) (string, []string) {
+	return list[0], list[1:]
+}
+
+func main() {
+	myList := []string{"The", "quick", "brown", "fox"}
+	head, rest := head(myList)
+	fmt.Println(head, rest)
+}
+//Will print "The [quick brown fox]"
+```
+- Brackets around the return types may suggest a tuple, but they are returned separately
+---
+## Named return values
+```go
+func sayHello(name string) (message string) {
+  message = fmt.Sprintf("Hello %s", name)
+  return
+}
+```
+- Assigning a name to the return type(s) of a function declaration allows us to use the return keyword, without specifiying the value
+---
+## Defer
+```go
+func readFile(fileName string) []byte {
+  f, _ := os.Open(fileName)
+  defer f.Close()
+
+  data, _ := ioutil.ReadAll(f)
+  return data
+}
+```
+- We can use the `defer` keyword to manually push a function to the call stack so that it is executed when the current function finishes
+- Defer can be called multiple times, with the last defer call being executed first (LIFO)
+
+---
+## Interactive Hello world
+import RunnableBlock from 'components/RunnableBlock'
+
+<RunnableBlock value={`package main
+func main() {
+  println("hello wld")
+}`}
+  initialOutput={'hello wld'} />
+
+---
+The end
