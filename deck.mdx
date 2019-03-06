@@ -157,7 +157,14 @@ type Employee struct {
 ---
 ## Concurrency
 
-Sticking with the goal of simplicity...
+```
+Threading sucks
+Roses are red
+Violets are blue
+So do you
+```
+
+Go keeps concurrency simple
 ---
 ## Goroutines
 - A goroutine is a lightweight thread of execution.
@@ -235,7 +242,7 @@ func sqrt(in <-chan float64, out chan<- float64) {
 - Whilst we can just use channels to synchronize our code, there are better options
 
 ### The `sync` package
-- Go has a number of built in methods and structs to help you code concurrently: **WaitGroup**, **Mutex**
+- Go has a number of built in methods and structs to help you code concurrently, two examples: **WaitGroup**, **Mutex**
 ---
 ## WaitGroup
 - A WaitGroup is a threadsafe struct that keeps track of a counter and can block a thread until the counter reaches 0
@@ -288,8 +295,10 @@ func main() {
 }
 +S
 func sqrt(in <-chan float64, out chan<- answer, wg *sync.WaitGroup, id int) {
-	//loop through the input numbers and place the resulting square root in the output channel
-	//This loop will keep running until the 'in' channel is closed
+	//loop through the input numbers and place the 
+  // resulting square root in the output channel
+	//This loop will keep running until the 'in' 
+  // channel is closed
 	for num := range in {
 		out <- answer{answer: math.Sqrt(num), id: id}
 	}
