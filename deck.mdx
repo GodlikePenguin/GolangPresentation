@@ -195,6 +195,7 @@ response := <- messages
 
 ---
 Enough boring talk, lets see concurrency in action
+<small><a href="https://play.golang.org/p/GVTko-E7UiZ">https://play.golang.org/p/GVTko-E7UiZ</a></small>
 <RunnableBlock value={`package main
 +S
 import "math"
@@ -251,6 +252,7 @@ func sqrt(in <-chan float64, out chan<- float64) {
 
 ---
 Let's look at WaitGroups in action
+<small><a href="https://play.golang.org/p/mKwVj6uDkKc">https://play.golang.org/p/mKwVj6uDkKc</a></small>
 <RunnableBlock
   value={`package main
 +S
@@ -330,6 +332,7 @@ type Box struct {
 
 ---
 Select statement in action
+<small><a href="https://play.golang.org/p/A_jGir7z276">https://play.golang.org/p/A_jGir7z276</a></small>
 <RunnableBlock value={`package main
 +S
 import "time"
